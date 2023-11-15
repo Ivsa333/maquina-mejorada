@@ -66,15 +66,14 @@ public class MaquinaExpendedoraMejorada {
             // Actualiza el total de dinero acumulado en la maquina
             totalDineroAcumulado = totalDineroAcumulado + precioBillete;
             // Reduce el balance del cliente actual dejandole seguir utilizando la maquina
-            balanceClienteActual = balanceClienteActual - precioBillete;
-        }
-        else {
-            System.out.println("Necesitas introducir " + (precioBillete - balanceClienteActual) + " euros mas!");
-                    
-        }            
+            balanceClienteActual = balanceClienteActual - precioBillete;          
     }
-    
-    /**
+        else {
+            System.out.println("Necesitas introducir" + (precioBillete - balanceClienteActual) + "euros más!");
+        }
+}
+
+        /**
      * Cancela la operacion de compra del cliente actual y le
      * devuelve al cliente el dinero que ha introducido hasta el momento
      */
