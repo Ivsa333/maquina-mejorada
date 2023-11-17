@@ -7,6 +7,7 @@ public class MaquinaExpendedoraMejorada {
     // El total de dinero almacenado en la maquina desde su ultimo vaciado
     private int totalDineroAcumulado;
     // El origen del billete
+    private int valorADevolver;
     private String estacionOrigen;
     // El destino del billete
     private String estacionDestino;
@@ -22,7 +23,7 @@ public class MaquinaExpendedoraMejorada {
         totalDineroAcumulado = 0;
         estacionOrigen = origen;
         estacionDestino = destino;
-
+       valorADevolver = 0;
     }
     /**
      * Crea una maquina expendedora de billetes de tren con el 
@@ -35,6 +36,7 @@ public class MaquinaExpendedoraMejorada {
         totalDineroAcumulado = 0;
         estacionOrigen = "León";
         estacionDestino= "Cádiz";
+        valorADevolver = 0;
     }
     /**
      * Devuelve el precio del billete
@@ -61,7 +63,13 @@ public class MaquinaExpendedoraMejorada {
             System.out.println(cantidadIntroducida + " no es una cantidad de dinero valida.");
         }        
     }
-
+    public int getVaciarDineroDeLaMaquina() {
+        int valorADevolver;
+        valorADevolver = totalDineroAcumulado + balanceClienteActual;
+        totalDineroAcumulado = 0;
+        balanceClienteActual = 0;
+        return valorADevolver;
+    }
     /**
      * Imprime un billete para el cliente actual
      */
