@@ -10,7 +10,8 @@ public class MaquinaExpendedoraMejorada {
     private String estacionOrigen;
     // El destino del billete
     private String estacionDestino;
-
+    int numeroBilletesVendidos;
+    int imprimirBillete;
     /**
      * Crea una maquina expendedora de billetes de tren con el 
      * precio del billete y el origen y destino dados. Se asume que el precio
@@ -23,6 +24,7 @@ public class MaquinaExpendedoraMejorada {
         estacionOrigen = origen;
         estacionDestino = destino;
     }
+    
     /**
      * Crea una maquina expendedora de billetes de tren con el 
      * precio del billete y el origen y destino dados. Se asume que el precio
@@ -35,6 +37,7 @@ public class MaquinaExpendedoraMejorada {
         estacionOrigen = "León";
         estacionDestino= "Cádiz";
     }
+    
     /**
      * Devuelve el precio del billete
      */
@@ -60,6 +63,7 @@ public class MaquinaExpendedoraMejorada {
             System.out.println(cantidadIntroducida + " no es una cantidad de dinero valida.");
         }        
     }
+    
     public int getVaciarDineroDeLaMaquina() {
         int valorADevolver;
         valorADevolver = totalDineroAcumulado + balanceClienteActual;
@@ -74,12 +78,15 @@ public class MaquinaExpendedoraMejorada {
         }
         return valorADevolver;
     }
-    /**
-     * Imprime un billete para el cliente actual
-     */
-    public void imprimirBillete() {
-    int cantidadDeDineroQueFalta= precioBillete - balanceClienteActual;
-        if (cantidadDeDineroQueFalta <= 0) {        
+
+        /**
+         * Imprime un billete para el cliente actual
+         */
+        public void imprimirBillete() {
+        int cantidadDeDineroQueFalta= precioBillete - balanceClienteActual;
+        int numeroBilletes;
+        int ventaBilletes;
+            if (cantidadDeDineroQueFalta <= 0) {        
             // Simula la impresion de un billete
             System.out.println("##################");
             System.out.println("# Billete de tren:");
@@ -91,13 +98,23 @@ public class MaquinaExpendedoraMejorada {
             // Actualiza el total de dinero acumulado en la maquina
             totalDineroAcumulado = totalDineroAcumulado + precioBillete;
             // Reduce el balance del cliente actual dejandole seguir utilizando la maquina
-            balanceClienteActual = balanceClienteActual - precioBillete;          
-    }
+            balanceClienteActual = balanceClienteActual - precioBillete;
+            imprimirBillete = imprimirBillete + 1;
+            numeroBilletesVendidos = imprimirBillete;
+        }
         else {
             System.out.println("Necesitas introducir " + (cantidadDeDineroQueFalta) + " euros más!");
         }
-}
+    }
 
+    public int getNumeroBilletesVendidos () {
+        return numeroBilletesVendidos;
+    }
+    
+    public void imprimirNumeroBilletes() {
+        System.out.println(numeroBilletesVendidos + " billetes han sido vendidos");
+    }
+    
         /**
      * Cancela la operacion de compra del cliente actual y le
      * devuelve al cliente el dinero que ha introducido hasta el momento
