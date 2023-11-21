@@ -12,6 +12,7 @@ public class MaquinaExpendedoraMejorada {
     private String estacionDestino;
     int numeroBilletesVendidos;
     private int maquinaTipo;
+    private int maximoBilletes;
     /**
      * Crea una maquina expendedora de billetes de tren con el 
      * precio del billete y el origen y destino dados. Se asume que el precio
@@ -24,6 +25,7 @@ public class MaquinaExpendedoraMejorada {
         estacionOrigen = origen;
         estacionDestino = destino;
         numeroBilletesVendidos = 0;
+        maximoBilletes = 10;
         maquinaTipo = premio1ONormal2;
             if (maquinaTipo == 1) {
                 maquinaTipo = 1;
@@ -45,6 +47,7 @@ public class MaquinaExpendedoraMejorada {
         estacionOrigen = "León";
         estacionDestino= "Cádiz";
         numeroBilletesVendidos = 0;
+        maximoBilletes = 10;
         maquinaTipo = premio1ONormal2;
             if (maquinaTipo == 1) {
                 maquinaTipo = 1;
@@ -72,14 +75,18 @@ public class MaquinaExpendedoraMejorada {
      * Simula la introduccion de dinero por parte del cliente actual
      */
     public void introducirDinero(int cantidadIntroducida) {
-        if (cantidadIntroducida > 0) {
+        if (maximoBilletes > 0) {
+            if (cantidadIntroducida > 0) {
             balanceClienteActual = balanceClienteActual + cantidadIntroducida;
+            }
+            else {
+            System.out.println(cantidadIntroducida + " no es una cantidad de dinero valida.");
+            }        
         }
         else {
-            System.out.println(cantidadIntroducida + " no es una cantidad de dinero valida.");
-        }        
-    }
-    
+            System.out.println("No quedan billetes que comprar");
+        }
+    }  
     public int getVaciarDineroDeLaMaquina() {
         int valorADevolver;
         valorADevolver = totalDineroAcumulado + balanceClienteActual;
@@ -101,7 +108,8 @@ public class MaquinaExpendedoraMejorada {
         public void imprimirBillete() {
         int cantidadDeDineroQueFalta= precioBillete - balanceClienteActual;
         int ventaBilletes;
-            if (cantidadDeDineroQueFalta <= 0) {        
+        if (maximoBilletes > 0 ) {
+              if (cantidadDeDineroQueFalta <= 0) {        
             // Simula la impresion de un billete
             System.out.println("##################");
             System.out.println("# Billete de tren:");
@@ -115,19 +123,23 @@ public class MaquinaExpendedoraMejorada {
             // Reduce el balance del cliente actual dejandole seguir utilizando la maquina
             balanceClienteActual = balanceClienteActual - precioBillete;
             numeroBilletesVendidos = numeroBilletesVendidos + 1;
-        
+            maximoBilletes = maximoBilletes - 1;
 
          if (maquinaTipo == 1) {
             System.out.println("Descuento de " +precioBillete * 0.1+ " euros para el Carrefour");
-        }
+            }
          else {
              System.out.println("Gracias por su compra");
-         }
-    }
+             }
+        }
         else {
             System.out.println("Necesitas introducir " + (cantidadDeDineroQueFalta) + " euros más!");
         }
     }
+    else {
+        System.out.println("No quedan billetes disponibles");
+    }
+}
 
     public int getNumeroBilletesVendidos () {
         return numeroBilletesVendidos;
