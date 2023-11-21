@@ -11,18 +11,26 @@ public class MaquinaExpendedoraMejorada {
     // El destino del billete
     private String estacionDestino;
     int numeroBilletesVendidos;
+    private int maquinaTipo;
     /**
      * Crea una maquina expendedora de billetes de tren con el 
      * precio del billete y el origen y destino dados. Se asume que el precio
      * del billete que se recibe es mayor que 0.
      */
-    public MaquinaExpendedoraMejorada(int precioDelBillete, String origen, String destino) {
+    public MaquinaExpendedoraMejorada(int precioDelBillete, String origen, String destino,int premio1ONormal2) {
         precioBillete = precioDelBillete;
         balanceClienteActual = 0;
         totalDineroAcumulado = 0;
         estacionOrigen = origen;
         estacionDestino = destino;
         numeroBilletesVendidos = 0;
+        maquinaTipo = premio1ONormal2;
+            if (maquinaTipo == 1) {
+                maquinaTipo = 1;
+            }
+            else {
+                maquinaTipo = 2;
+            }
     }
     
     /**
@@ -30,13 +38,20 @@ public class MaquinaExpendedoraMejorada {
      * precio del billete y el origen y destino dados. Se asume que el precio
      * del billete que se recibe es mayor que 0.
      */
-    public MaquinaExpendedoraMejorada() {
+    public MaquinaExpendedoraMejorada(int premio1ONormal2) {
         precioBillete = 20;
         balanceClienteActual = 0;
         totalDineroAcumulado = 0;
         estacionOrigen = "León";
         estacionDestino= "Cádiz";
         numeroBilletesVendidos = 0;
+        maquinaTipo = premio1ONormal2;
+            if (maquinaTipo == 1) {
+                maquinaTipo = 1;
+            }
+            else {
+                maquinaTipo = 2;
+            }
     }
     
     /**
@@ -100,7 +115,15 @@ public class MaquinaExpendedoraMejorada {
             // Reduce el balance del cliente actual dejandole seguir utilizando la maquina
             balanceClienteActual = balanceClienteActual - precioBillete;
             numeroBilletesVendidos = numeroBilletesVendidos + 1;
+        
+
+         if (maquinaTipo == 1) {
+            System.out.println("Descuento de " +precioBillete * 0.1+ " euros para el Carrefour");
         }
+         else {
+             System.out.println("Gracias por su compra");
+         }
+    }
         else {
             System.out.println("Necesitas introducir " + (cantidadDeDineroQueFalta) + " euros más!");
         }
