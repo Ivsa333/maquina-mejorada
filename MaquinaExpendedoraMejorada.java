@@ -13,6 +13,7 @@ public class MaquinaExpendedoraMejorada {
     int numeroBilletesVendidos;
     private int maquinaTipo;
     private int maximoBilletes;
+    private int numeroPremio;
     /**
      * Crea una maquina expendedora de billetes de tren con el 
      * precio del billete y el origen y destino dados. Se asume que el precio
@@ -27,12 +28,13 @@ public class MaquinaExpendedoraMejorada {
         numeroBilletesVendidos = 0;
         maximoBilletes = numeroMaximoBilletes;
         maquinaTipo = premio1ONormal2;
-            if (maquinaTipo == 1) {
-                maquinaTipo = 1;
-            }
-            else {
-                maquinaTipo = 2;
-            }
+        numeroPremio = 1;
+        if (maquinaTipo == 1) {
+            maquinaTipo = 1;
+        }
+        else {
+            maquinaTipo = 2;
+        }
     }
     
     /**
@@ -49,12 +51,13 @@ public class MaquinaExpendedoraMejorada {
         numeroBilletesVendidos = 0;
         maximoBilletes = numeroMaximoBilletes;
         maquinaTipo = premio1ONormal2;
-            if (maquinaTipo == 1) {
-                maquinaTipo = 1;
-            }
-            else {
-                maquinaTipo = 2;
-            }
+        numeroPremio = 1;
+        if (maquinaTipo == 1) {
+            maquinaTipo = 1;
+        }
+        else {
+            maquinaTipo = 2;
+        }
     }
     
     /**
@@ -125,13 +128,20 @@ public class MaquinaExpendedoraMejorada {
                 numeroBilletesVendidos = numeroBilletesVendidos + 1;
                 maximoBilletes = maximoBilletes - 1;
 
-                 if (maquinaTipo == 1) {
-                System.out.println("Descuento de " +precioBillete * 0.1+ " euros para el Carrefour");
+                if (maquinaTipo == 1) {
+                    if (numeroPremio == 3) {
+                        System.out.println("Descuento de " +precioBillete * 0.1+ " euros para el Carrefour");
+                        numeroPremio = 0;
+                    }
+                    else {
+                        System.out.println("Gracias por su compra");
+                    }
+                    numeroPremio = numeroPremio + 1;
                 }
-                 else {
-                 System.out.println("Gracias por su compra");
-                 }
+                else {
+                    System.out.println("Gracias por su compra");
                 }
+                    }
                 else {
                 System.out.println("Necesitas introducir " + (cantidadDeDineroQueFalta) + " euros más!");
                 }
